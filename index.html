@@ -67,11 +67,11 @@
 
         .main-content { flex: 2; min-width: 0; }
 
-        /* Fade-in/Fade-out Section - FORCED STRETCH */
+        /* Slideshow Section */
         .fade-container {
             position: relative;
             width: 100%;
-            height: 450px; /* Fixed height for consistency */
+            height: 450px;
             overflow: hidden;
             border-radius: 4px;
             background: #000;
@@ -90,8 +90,6 @@
             opacity: 1; 
             z-index: 2; 
         }
-        
-        /* Force image to fill 100% of container without distortion */
         .fade-item img { 
             width: 100% !important; 
             height: 100% !important; 
@@ -137,7 +135,30 @@
         .handshake-icon { width: 45px; height: auto; border-radius: 4px; }
         .join-container:hover .join-link { text-decoration: underline; }
 
-        .sidebar-main-img { width: 100%; border-radius: 4px; margin-top: 5px; }
+        /* NEW: Image Overlay Logic */
+        .sidebar-hero {
+            position: relative;
+            width: 100%;
+            border-radius: 4px;
+            overflow: hidden; /* Clips the gradient to the border-radius */
+        }
+        .sidebar-main-img { 
+            width: 100%; 
+            display: block; 
+        }
+        .image-text-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 25px 10px 15px;
+            color: white;
+            text-align: center;
+            font-weight: bold;
+            font-size: 18px;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.75));
+            box-sizing: border-box;
+        }
 
         .latest-updates h3 { color: var(--primary-blue); border-bottom: 2px solid #ddd; padding-bottom: 5px; margin-top: 25px;}
         .latest-updates ul { list-style: none; padding: 0; font-size: 14px; }
@@ -210,10 +231,10 @@
             </div>
 
             <div class="bottom-grid">
-                <div class="grid-item"><img src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=300"></div>
-                <div class="grid-item"><img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?w=300"></div>
-                <div class="grid-item"><img src="https://images.unsplash.com/photo-1489710437720-ebb67ec84dd2?w=300"></div>
-                <div class="grid-item"><img src="https://images.unsplash.com/photo-1526628953301-3e589a6a8b74?w=300"></div>
+                <div class="grid-item"><img src="images/Desawomen.jpg"></div>
+                <div class="grid-item"><img src="images/aseanculture1.jpg"></div>
+                <div class="grid-item"><img src="images/aseanculture2.jpg"></div>
+                <div class="grid-item"><img src="images/aseanculture3.jpg"></div>
             </div>
             
             <p class="attribution" data-en="Images courtesy of Google" data-id="Gambar milik Google">Images courtesy of Google</p>
@@ -225,7 +246,10 @@
                 <img src="images/handshake.png" alt="Handshake" class="handshake-icon">
             </a>
 
-            <img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=400" alt="Community" class="sidebar-main-img">
+            <div class="sidebar-hero">
+                <img src="images/aseanwomen.jpg" alt="Community" class="sidebar-main-img">
+                <div class="image-text-overlay">Shaping The Future in Equality</div>
+            </div>
             
             <div class="latest-updates">
                 <h3 data-en="LATEST UPDATES" data-id="PEMBARUAN TERKINI">LATEST UPDATES</h3>
@@ -250,7 +274,6 @@
     </footer>
 
     <script>
-        // Language Switching Logic
         function setLanguage(lang) {
             const elements = document.querySelectorAll('[data-en]');
             elements.forEach(el => {
@@ -260,7 +283,6 @@
             document.getElementById('btn-id').classList.toggle('active', lang === 'id');
         }
 
-        // Auto Fade-in/Fade-out Logic
         let slides = document.querySelectorAll('.fade-item');
         let currentSlide = 0;
         
