@@ -18,7 +18,6 @@
             background-color: #f4f4f4;
         }
 
-        /* Top Bar & Language Switcher */
         .top-bar {
             background: white;
             padding: 10px 5%;
@@ -37,7 +36,6 @@
         .lang-link.active { font-weight: bold; color: var(--primary-blue); border-bottom: 2px solid var(--primary-blue); }
         .lang-switch img { width: 22px; vertical-align: middle; }
 
-        /* Navigation */
         nav {
             background-color: var(--header-bg);
             color: white;
@@ -55,7 +53,6 @@
         }
         nav a:last-child { border-right: none; }
 
-        /* Main Container */
         .container {
             display: flex;
             max-width: 1200px;
@@ -67,38 +64,41 @@
 
         .main-content { flex: 2; min-width: 0; }
 
-        /* Slideshow Section */
+        /* SLIDESHOW: Forced Stretch Mode */
         .fade-container {
             position: relative;
             width: 100%;
-            height: 450px;
+            height: 450px; 
             overflow: hidden;
             border-radius: 4px;
-            background: #000;
         }
+        
         .fade-item {
             position: absolute;
-            top: 0; 
-            left: 0; 
-            width: 100%; 
+            top: 0;
+            left: 0;
+            width: 100%;
             height: 100%;
             opacity: 0;
             transition: opacity 1.5s ease-in-out;
             z-index: 1;
         }
-        .fade-item.active { 
-            opacity: 1; 
-            z-index: 2; 
+
+        .fade-item.active {
+            opacity: 1;
+            z-index: 2;
         }
-        .fade-item img { 
-            width: 100% !important; 
-            height: 100% !important; 
-            object-fit: cover; 
-            object-position: center;
+
+        .fade-item img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: fill; /* Stretches image to fill entire 450px height */
             display: block;
         }
 
-        /* Bottom Grid */
         .bottom-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -121,9 +121,7 @@
             text-align: right;
         }
 
-        /* Sidebar Styling */
         .sidebar { flex: 1; }
-        
         .join-container {
             display: flex;
             align-items: center;
@@ -133,19 +131,14 @@
         }
         .join-link { color: #0066cc; font-style: italic; font-weight: bold; font-size: 18px; }
         .handshake-icon { width: 45px; height: auto; border-radius: 4px; }
-        .join-container:hover .join-link { text-decoration: underline; }
 
-        /* NEW: Image Overlay Logic */
         .sidebar-hero {
             position: relative;
             width: 100%;
             border-radius: 4px;
-            overflow: hidden; /* Clips the gradient to the border-radius */
+            overflow: hidden;
         }
-        .sidebar-main-img { 
-            width: 100%; 
-            display: block; 
-        }
+        .sidebar-main-img { width: 100%; display: block; }
         .image-text-overlay {
             position: absolute;
             bottom: 0;
@@ -174,7 +167,6 @@
             text-align: center;
             padding: 15px;
             margin-top: 20px;
-            font-size: 14px;
         }
 
         @media (max-width: 768px) {
@@ -236,7 +228,6 @@
                 <div class="grid-item"><img src="images/aseanculture2.jpg"></div>
                 <div class="grid-item"><img src="images/aseanculture3.jpg"></div>
             </div>
-            
             <p class="attribution" data-en="Images courtesy of Google" data-id="Gambar milik Google">Images courtesy of Google</p>
         </main>
 
@@ -245,12 +236,10 @@
                 <span class="join-link" data-en="Join us @ anzvf-grants.org" data-id="Bergabunglah @ anzvf-grants.org">Join us @ anzvf-grants.org</span>
                 <img src="images/handshake.png" alt="Handshake" class="handshake-icon">
             </a>
-
             <div class="sidebar-hero">
                 <img src="images/aseanwomen.jpg" alt="Community" class="sidebar-main-img">
                 <div class="image-text-overlay">Shaping The Future in Equality</div>
             </div>
-            
             <div class="latest-updates">
                 <h3 data-en="LATEST UPDATES" data-id="PEMBARUAN TERKINI">LATEST UPDATES</h3>
                 <ul>
@@ -285,11 +274,12 @@
 
         let slides = document.querySelectorAll('.fade-item');
         let currentSlide = 0;
-        
         setInterval(() => {
-            slides[currentSlide].classList.remove('active');
-            currentSlide = (currentSlide + 1) % slides.length;
-            slides[currentSlide].classList.add('active');
+            if (slides.length > 0) {
+                slides[currentSlide].classList.remove('active');
+                currentSlide = (currentSlide + 1) % slides.length;
+                slides[currentSlide].classList.add('active');
+            }
         }, 4000);
     </script>
 </body>
