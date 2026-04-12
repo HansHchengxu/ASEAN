@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ASEAN-New Zealand Vision Fund</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-blue: #004a99;
+            --header-bg: #003366;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        /* Top Bar & Language Switcher */
+        .top-bar {
+            background: white;
+            padding: 10px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logos img { height: 50px; margin-right: 15px; vertical-align: middle; }
+        
+        .top-right { text-align: right; font-size: 13px; color: var(--header-bg); }
+        .top-right a { color: var(--header-bg); text-decoration: none; font-weight: bold; }
+        .top-right a:hover { text-decoration: underline; }
+
+        .lang-switch { margin-top: 5px; }
+        .lang-link { color: #555; text-decoration: none; margin: 0 5px; cursor: pointer; }
+        .lang-link.active { font-weight: bold; color: var(--primary-blue); border-bottom: 2px solid var(--primary-blue); }
+        .lang-switch img { width: 22px; vertical-align: middle; }
+
+        /* Navigation */
+        nav {
+            background-color: var(--header-bg);
+            color: white;
+            padding: 12px 5%;
+            text-align: center;
+            border-bottom: 4px solid #002244;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 0 12px;
+            font-weight: bold;
+            font-size: 16px;
+            border-right: 1px solid rgba(255,255,255,0.3);
+        }
+        nav a:last-child { border-right: none; }
+
+        /* Main Container */
+        .container {
+            display: flex;
+            max-width: 1200px;
+            margin: 20px auto;
+            background: white;
+            padding: 20px;
+            gap: 30px;
+        }
+
+        .main-content { flex: 2; min-width: 0; }
+
+        /* Fade-in/Fade-out Section - FORCED STRETCH */
+        .fade-container {
+            position: relative;
+            width: 100%;
+            height: 450px; /* Fixed height for consistency */
+            overflow: hidden;
+            border-radius: 4px;
+            background: #000;
+        }
+        .fade-item {
+            position: absolute;
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1.5s ease-in-out;
+            z-index: 1;
+        }
+        .fade-item.active { 
+            opacity: 1; 
+            z-index: 2; 
+        }
+        
+        /* Force image to fill 100% of container without distortion */
+        .fade-item img { 
+            width: 100% !important; 
+            height: 100% !important; 
+            object-fit: cover; 
+            object-position: center;
+            display: block;
+        }
+
+        /* Bottom Grid */
+        .bottom-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin-top: 20px;
+        }
+        .grid-item img {
+            width: 100%; 
+            height: 140px;
+            object-fit: cover;
+            border-radius: 2px;
+            border: 1px solid #ddd;
+        }
+
+        .attribution {
+            margin-top: 10px;
+            font-size: 11px;
+            color: #888;
+            font-style: italic;
+            text-align: right;
+        }
+
+        /* Sidebar Styling */
+        .sidebar { flex: 1; }
+        
+        .join-container {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        .join-link { color: #0066cc; font-style: italic; font-weight: bold; font-size: 18px; }
+        .handshake-icon { width: 45px; height: auto; border-radius: 4px; }
+        .join-container:hover .join-link { text-decoration: underline; }
+
+        .sidebar-main-img { width: 100%; border-radius: 4px; margin-top: 5px; }
+
+        .latest-updates h3 { color: var(--primary-blue); border-bottom: 2px solid #ddd; padding-bottom: 5px; margin-top: 25px;}
+        .latest-updates ul { list-style: none; padding: 0; font-size: 14px; }
+        .latest-updates li { margin-bottom: 10px; border-bottom: 1px dotted #ccc; padding-bottom: 5px; }
+        .latest-updates a { text-decoration: none; color: #005588; font-weight: 600; }
+        
+        .social-icons { display: flex; gap: 10px; margin-top: 15px; align-items: center; }
+        .social-icons i { font-size: 18px; color: #666; cursor: pointer; }
+
+        footer {
+            background: var(--header-bg);
+            color: white;
+            text-align: center;
+            padding: 15px;
+            margin-top: 20px;
+            font-size: 14px;
+        }
+
+        @media (max-width: 768px) {
+            .container { flex-direction: column; }
+            .bottom-grid { grid-template-columns: repeat(2, 1fr); }
+            .fade-container { height: 300px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="top-bar">
+            <div class="logos">
+                <img src="images/Asean zealand.jpg" alt="Logo">
+                <img src="images/ASEAN.png" alt="ASEAN">
+                <img src="images/New Zealand.png" alt="Newzealand">
+                <img src="images/cowater.png" alt="Cowater">
+            </div>
+            <div class="top-right">
+                <span>| <a href="#">Sign Up</a> | <a href="#">Log in</a> |</span><br>
+                <div class="lang-switch">
+                    <a href="javascript:void(0)" class="lang-link" id="btn-id" onclick="setLanguage('id')">Bahasa <img src="https://upload.wikimedia.org/wikipedia/commons/9/9f/Flag_of_Indonesia.svg" alt="ID"></a>
+                    <a href="javascript:void(0)" class="lang-link active" id="btn-en" onclick="setLanguage('en')">English <img src="https://upload.wikimedia.org/wikipedia/en/a/ae/Flag_of_the_United_Kingdom.svg" alt="UK"></a>
+                </div>
+            </div>
+        </div>
+        <nav>
+            <a href="#" data-en="Home" data-id="Beranda">Home</a>
+            <a href="#" data-en="About Us" data-id="Tentang Kami">About Us</a>
+            <a href="#" data-en="Where we work" data-id="Wilayah Kerja">Where we work</a>
+            <a href="#" data-en="Applications" data-id="Pendaftaran">Applications</a>
+            <a href="#" data-en="News Room" data-id="Ruang Berita">News Room</a>
+            <a href="#" data-en="Projects" data-id="Proyek">Projects</a>
+            <a href="#" data-en="Contact Us" data-id="Hubungi Kami">Contact Us</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <main class="main-content">
+            <div class="fade-container">
+                <div class="fade-item active">
+                    <img src="images/Asean Meet.png" alt="Slide 1">
+                </div>
+                <div class="fade-item">
+                    <img src="images/asean flags.jpg" alt="Slide 2">
+                </div>
+                <div class="fade-item">
+                    <img src="images/50aseannz.png" alt="Slide 3">
+                </div>
+                <div class="fade-item">
+                    <img src="images/Indoarchipelago.png" alt="Slide 4">
+                </div>
+            </div>
+
+            <div class="bottom-grid">
+                <div class="grid-item"><img src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=300"></div>
+                <div class="grid-item"><img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?w=300"></div>
+                <div class="grid-item"><img src="https://images.unsplash.com/photo-1489710437720-ebb67ec84dd2?w=300"></div>
+                <div class="grid-item"><img src="https://images.unsplash.com/photo-1526628953301-3e589a6a8b74?w=300"></div>
+            </div>
+            
+            <p class="attribution" data-en="Images courtesy of Google" data-id="Gambar milik Google">Images courtesy of Google</p>
+        </main>
+
+        <aside class="sidebar">
+            <a href="https://anzvf-grants.org" class="join-container">
+                <span class="join-link" data-en="Join us @ anzvf-grants.org" data-id="Bergabunglah @ anzvf-grants.org">Join us @ anzvf-grants.org</span>
+                <img src="images/handshake.png" alt="Handshake" class="handshake-icon">
+            </a>
+
+            <img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=400" alt="Community" class="sidebar-main-img">
+            
+            <div class="latest-updates">
+                <h3 data-en="LATEST UPDATES" data-id="PEMBARUAN TERKINI">LATEST UPDATES</h3>
+                <ul>
+                    <li><a href="#" data-en="50 Years of ASEAN Partnership" data-id="50 Tahun Kemitraan ASEAN">50 Years of ASEAN Partnership</a></li>
+                    <li><a href="#" data-en="ANZVF Grants Launching 2026" data-id="Peluncuran Hibah ANZVF 2026">ANZVF Grants Launching 2026</a></li>
+                    <li><a href="#" data-en="Strategic Partnership Updates" data-id="Pembaruan Kemitraan Strategis">Strategic Partnership Updates</a></li>
+                </ul>
+            </div>
+            <div class="social-icons">
+                <strong data-en="SHARE:" data-id="BAGIKAN:">SHARE:</strong>
+                <i class="fab fa-facebook"></i>
+                <i class="fab fa-twitter"></i>
+                <i class="fab fa-youtube"></i>
+                <i class="fab fa-linkedin"></i>
+            </div>
+        </aside>
+    </div>
+
+    <footer>
+        <p data-en="ASEAN NZ VISION FUND 2026 @ Copyright. All rights reserved" data-id="ASEAN NZ VISION FUND 2026 @ Hak Cipta dilindungi Undang-Undang">ASEAN NZ VISION FUND 2026 @ Copyright. All rights reserved</p>
+    </footer>
+
+    <script>
+        // Language Switching Logic
+        function setLanguage(lang) {
+            const elements = document.querySelectorAll('[data-en]');
+            elements.forEach(el => {
+                el.innerText = el.getAttribute('data-' + lang);
+            });
+            document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+            document.getElementById('btn-id').classList.toggle('active', lang === 'id');
+        }
+
+        // Auto Fade-in/Fade-out Logic
+        let slides = document.querySelectorAll('.fade-item');
+        let currentSlide = 0;
+        
+        setInterval(() => {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (currentSlide + 1) % slides.length;
+            slides[currentSlide].classList.add('active');
+        }, 4000);
+    </script>
+</body>
+</html>
